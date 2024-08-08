@@ -19,35 +19,40 @@ def login():
     print("Incorrect ID or password")
 
 def main():
-    while True:
-        choice = int(input("Enter the choice you want to choose:\n 1. Add Book\n 2. Display Books\n 3. Search Book\n 4. Delete Book\n 5. Update Book\n 6. Check Out Book\n 7. Check In Book\n 8. Exit\n"))
-        if choice == 1:
-            addbooks()
-        elif choice == 2:
-            displaybook()
-        elif choice == 3:
-            searchbook()
-        elif choice == 4:
-            removebook()
-        elif choice == 5:
-            updatebook()
-        elif choice == 6:
-            checkoutbook()
-        elif choice == 7:
-            checkinbook()
-        elif choice == 8:
-            print("Exiting...")
-            break
-        else:
-            print("Incorrect choice")
+   while True:
+        try:
+            choice = int(input("Enter the choice you want to choose:\n 1. Add Book\n 2. Display Books\n 3. Search Book\n 4. Delete Book\n 5. Update Book\n 6. Check Out Book\n 7. Check In Book\n 8. Exit\n"))
+            if choice == 1:
+                addbooks()
+            elif choice == 2:
+                displaybook()
+            elif choice == 3:
+                searchbook()
+            elif choice == 4:
+                removebook()
+            elif choice == 5:
+                updatebook()
+            elif choice == 6:
+                checkoutbook()
+            elif choice == 7:
+                checkinbook()
+            elif choice == 8:
+                print("Exiting...")
+                break
+            else:
+                print("Incorrect choice")
+        except ValueError:
+            print("Invalid input, please enter a number between 1 and 8.")
 
 def addbooks():
-    book_id = input("Enter your book id number: ")
-    book_name = input("Enter the book name: ")
-    book_author = input("Enter the book author name: ")
-    books[book_id] = {'book_name': book_name, 'book_author': book_author, 'checked_out': False}
-    print("Book added successfully")
-
+    try:
+        book_id = input("Enter your book id number: ")
+        book_name = input("Enter the book name: ")
+        book_author = input("Enter the book author name: ")
+        books[book_id] = {'book_name': book_name, 'book_author': book_author, 'checked_out': False}
+        print("Book added successfully")
+    except Exception as e:
+        print(f"An error occurred while adding the book: {e}")
 def displaybook():
     if not books:
         print("\nNo records to display.")
